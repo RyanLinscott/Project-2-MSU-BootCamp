@@ -16,8 +16,18 @@ ___
     ```
 ![hydra](https://user-images.githubusercontent.com/96896057/176233538-21b90ef2-7b7e-401c-a6e2-9856a7b06fb0.png)
 
-- Withi ashton's login information in hand I was able to return to the webpage and input his credentials to view the secret_folder:
+- Within ashton's login information in hand I was able to return to the webpage and input his credentials to view the secret_folder:
 ![secet_folder](https://user-images.githubusercontent.com/96896057/176232865-376a2a12-945f-4f8a-89c6-05b5d2371bee.png)
+- Once inside the folder, "ashton" gave us the exact instructions on how to connect to the server using WebDav:
+![secret_folder](https://user-images.githubusercontent.com/96896057/176234505-173b6d1b-f0fd-408c-bc0d-c39aff3a534a.png)
+- Inside of the WebDav connections we found the passwd.dav file, which contained the password to "ryan's" account:
+![ryan_passwd_dav](https://user-images.githubusercontent.com/96896057/176234787-0731b214-c701-4775-97e1-28240cc1da7b.png)
+- Viewing the contents it gave me a MD5 hash we could then crack using a online service such as CrackStation:
+![ryan_password](https://user-images.githubusercontent.com/96896057/176235042-50d11fcf-f147-4a70-981f-c13df6866abe.png)
+- Using MSFVenom a new shell script was created that when loaded to the server would allow me to gain access, once I added it to the server by simply dragging and dropping it from my host:
+![php_shell](https://user-images.githubusercontent.com/96896057/176235590-e6abd385-62b2-4b26-9762-3d6f96e84adc.png)
+- Once the script was loaded to the server all that was left was to click on the script which would give me access to the server I loaded the reverse shell onto and from there I simply had to find the file, which happened to be name "flag.txt".  Upon running the cat command it presented the flag "b1ng0w@5h1sn@n0":
+![flag_found](https://user-images.githubusercontent.com/96896057/176236349-5cc8ae0f-c2f1-4a5b-a953-a5464dc3132f.png)
 
 ___
 ### Day 2 - Blue Team 
