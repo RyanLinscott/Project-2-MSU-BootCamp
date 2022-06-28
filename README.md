@@ -32,10 +32,12 @@ ___
 ___
 ### Day 2 - Blue Team 
 ___
-> In order to design a mitigation effort it is important that we analyze the events that come into our server.  Once we have the events we must analylze the events as design "Alerts" such as the one below.  Once we have an "Alert" we can then dial in the actions that triggers the alert so we don't have so many alerts coming in that it causes fatigue amoungst the analyst while also ensuring the events that need to trigger the alert are properly getting caught. 
-TODO: Add image
+> In order to design a mitigation effort it is important that we analyze the events that come into this server.  Once the events were inside the SIEM, then "Alerts" such as the one below could be carefully crafted.  Once an "Alert" has been created it is then possible to dial in the threshold for actions that triggers the alert.  It is important to find the balance between having too many alerts and alerting on actual issues which need further attention.  Without properly calibrated alerts it can cause fatigue within the analysts and possibly allow a perpetrator to move practically unchecked within a network. 
+
+![Part2_BruteForce](https://user-images.githubusercontent.com/96896057/176238112-bd541620-84de-4b6a-a697-415505d96e14.png)
+
+- As you can see above the alert was created with Splunk that would alert the analyst anytime a IP address received more than ten, 404 status codes within a ten minute window.  This limit was created after judging events created following a directory traversal attack against the website.  The perpetrator was trying to find or gain access to all available webpages, many of which did not exist using the tool "dirbuster".  Even though not all 404 status codes are a bad, the average user would not be very likely to receive them that frequently in such a short span of time.  In the case of the attack which was analyzed there was over 3000 within a 30 second window, this most definitely tips off to the use of a automated process to launch this specific attack.
 ___
 ### Day 3 - Mitigation
 ___
-> How could the company mitigate the risk of these types of attacks in the future? 
-TODO::
+> How could the company mitigate the risk of these types of attacks in the future?
