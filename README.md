@@ -10,11 +10,20 @@ ___
 > To begin this project we had launch an attack againsts a vulnerable machine, we had to gain access to the machine.  We were asked to find the IP address of the vulnerable host, find the secret directory, brute force a log in of one of the servers users, connect to the server using WebDav, upload a PHP reverse shell, use msfvenom to launch an attack against the target to gain a meterpreter session and finally find the flag.
 
 - First I ran a nmap command to discover the hosts available within this network:
+    - "-sS" quickly sends TCP SYN stealth scan
+    - "-Pn" tells nmap you already assume the host is up so there is no need to ping it first
+    - "-vv" gives verbose output
+
 ![nmap scan](https://user-images.githubusercontent.com/96896057/176231038-50e01034-7818-4772-9f70-7a10cb988e0e.png)
 - Eventually the scan returned the target I was looking for:
 ![nmap_2](https://user-images.githubusercontent.com/96896057/176231730-0db7a09b-d9a4-4fc7-8020-fef48e89cf3e.png)
 - Now that we found the target we needed to get a little more information, so we adjusted our nmap command to get a little bit more info:
 ![nmap_server_apached](https://user-images.githubusercontent.com/96896057/176231440-b2c22547-d190-473e-b334-8e508b907393.png)
+    - "-Pn" tells nmap you already assume the host is up so there is no need to ping it first
+    - "-p 80" tells nmap specifically which port to scan
+    - "-sT" tells nmap to use a TCP scan, which is done by default and could have been ommitted
+    - "-sV" tells nmap to check for the service version of what it is scanning
+    
 - Seeing that the target was running an apache webserver I went to the address and began looking through the directories available until I stumbled across a blog article which mentioned that there was a directory called "secret_folder", unfortunately it appeared this folder was only visible if you were logged in as the user "ashton" so it was time to use hydra to brute force his login:
     ```
     hydra -l ashton -P /usr/shar/wordlists/rockyou.txt -s 80 -f -vV 192.168.1.105 http-get /company_folders/secretfolder
